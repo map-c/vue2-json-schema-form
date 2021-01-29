@@ -20,7 +20,15 @@ export default {
     },
     handleSingleChange(val, index) {
       const raw = this.value
-      raw[index] = val
+      if (typeof val === 'object' && val !== null) {
+        const tmp = raw[index]
+        raw[index] = {
+          ...tmp,
+          ...val
+        }
+      } else {
+        raw[index] = val
+      }
       this.$emit('change', raw)
     },
     handleAdd(index) {

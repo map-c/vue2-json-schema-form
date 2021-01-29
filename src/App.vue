@@ -47,14 +47,19 @@ export default {
         properties: {
           list: {
             type: 'array',
-            items: [
-              {
-                type: 'string'
-              },
-              {
-                type: 'number'
+            items: {
+              type: 'object',
+              properties: {
+                code: {
+                  title: '语言',
+                  type: 'string'
+                },
+                value: {
+                  title: '值',
+                  type: 'string'
+                }
               }
-            ]
+            }
           }
         }
       },

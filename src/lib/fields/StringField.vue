@@ -1,4 +1,6 @@
 <script>
+import FormItemWrapper from '@/lib/widget/FormItemWrapper'
+
 export default {
   name: 'StringField',
   props: {
@@ -16,7 +18,11 @@ export default {
     }
   },
   render() {
-    return <input value={this.value} onInput={this.handleInput} />
+    return (
+      <FormItemWrapper title={this.schema.title}>
+        <input value={this.value} onInput={this.handleInput} />
+      </FormItemWrapper>
+    )
   }
 }
 </script>
