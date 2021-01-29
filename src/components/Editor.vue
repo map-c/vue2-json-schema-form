@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="title">title</div>
+    <div class="title">{{ title }}</div>
     <div class="code-aaaa" ref="container" style="height:300px"></div>
   </div>
 </template>
@@ -11,11 +11,17 @@ import * as monaco from 'monaco-editor'
 export default {
   name: 'Editro',
   props: {
-    value: String
+    value: String,
+    title: String
   },
   data() {
     return {
       editor: {}
+    }
+  },
+  watch: {
+    value(val) {
+      this.editor.setValue(val)
     }
   },
   mounted() {
@@ -35,10 +41,8 @@ export default {
     this.destroyEditor()
   },
   methods: {
-    changeEditor(info) {
-      console.log('info is', info)
+    changeEditor() {
       const value = this.editor.getValue()
-      console.log('value is', value)
       this.$emit('change', value)
       this.editor.getAction('editor.action.formatDocument')._run()
     },

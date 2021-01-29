@@ -12,4 +12,4 @@
 
 [jsonSchema](http://json-schema.org/)
 
-1. 更具 jsonSchema 渲染出表单
+1. 根据 jsonSchema 动态渲染出表单
