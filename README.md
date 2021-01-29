@@ -1,29 +1,15 @@
-# vue2-json-schema-form
+### jsonSchemaform
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+``` html
+  <SchemaForm 
+    schema="schema"
+    value="formData"
+    errorSchema="errorSchema"
+    onChange="handelFormChange"
+  />
 ```
 
-### Run your unit tests
-```
-yarn test:unit
-```
+[jsonSchema](http://json-schema.org/)
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 更具 jsonSchema 渲染出表单

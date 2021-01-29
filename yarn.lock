@@ -7054,6 +7054,18 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+monaco-editor-webpack-plugin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-3.0.0.tgz#47a1c16e990d743572f47b0a1abb6de36bbc4afb"
+  integrity sha512-oPuYInTZIT5ctj8gjx7VEzxZFjcIBJXazVOaF6wJ/TPCldF0Lb/58jEeKTERXr4nr1Yobgx2tVfKcfkncAlAHg==
+  dependencies:
+    loader-utils "^2.0.0"
+
+monaco-editor@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.22.0.tgz#8a2038bc5b7e36ae40b51e0bf85df21a24ebbc2d"
+  integrity sha512-hr0TB1ykyfvtSpr+5+r13910k1daWx7hrV+Bicc5gC4HDtr1K0lEcN9h5X+aFL96OiWx68dsRaaQbKGjTz1B+A==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
