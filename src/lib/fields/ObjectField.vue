@@ -9,7 +9,6 @@ export default {
   inject: ['formItem'],
   methods: {
     handleChange(key, value) {
-      console.log(key, value)
       const values = this.value || {}
       values[key] = value
       this.$emit('change', values)

@@ -9,6 +9,8 @@
 
 <script>
 import FormItem from '@/lib/fields/FormItem'
+import Widget from '@/lib/widget/index'
+import validator from './validator/index'
 
 export default {
   name: 'SchemaForm',
@@ -16,7 +18,8 @@ export default {
     FormItem
   },
   provide: {
-    formItem: FormItem
+    formItem: FormItem,
+    widget: Widget
   },
   props: {
     schema: {
@@ -32,12 +35,34 @@ export default {
   },
   methods: {
     handleFormDataChange(value) {
-      console.log('form Data change', value)
       const raw = {
         ...this.formData,
         ...value
       }
       this.$emit('change', raw)
+    },
+    validator() {
+      const valid = validator({
+        options: { allErrors: true },
+        formats: [
+          {
+            name: 'test',
+            definition: data => {
+              return data === '123'
+            }
+          }
+        ],
+        keywords: [
+          {
+            keyword: 'uiwidget',
+            type: 'string',
+            schemaType: 'string',
+            code: () => true
+          }
+        ]
+      })
+      const res = valid(this.schema, this.value)
+      console.log('res is', res)
     }
   }
 }

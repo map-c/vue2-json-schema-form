@@ -1,18 +1,18 @@
 <template>
   <FormItem :title="title" :error="error">
-    <Input size="small" :value="value" @input="handleInput" />
+    <InputNumber size="small" :value="value" @change="handleInput" />
   </FormItem>
 </template>
 
 <script>
 import FormItem from './FormItemWrapper'
-import { Input } from 'element-ui'
+import { InputNumber } from 'element-ui'
 
 export default {
-  name: 'StringWidget',
+  name: 'NumberWidget',
   components: {
     FormItem,
-    Input
+    InputNumber
   },
   props: {
     value: String,
@@ -22,16 +22,7 @@ export default {
   },
   computed: {
     title() {
-      if (this.schema) {
-        return this.schema.title
-      }
-      return 'title'
-    },
-    size() {
-      if (this.options && this.options.size) {
-        return this.options.size
-      }
-      return 'small'
+      return this.schema && this.schema.title
     }
   },
   methods: {

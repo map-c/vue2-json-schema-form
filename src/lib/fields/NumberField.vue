@@ -1,6 +1,7 @@
 <script>
 export default {
   name: 'NumberField',
+  inject: ['widget'],
   props: {
     schema: Object,
     errorSchema: Object,
@@ -17,7 +18,16 @@ export default {
     }
   },
   render() {
-    return <input type="number" value={this.value} onInput={this.handleInput} />
+    const Component = this.widget.NumberWidget
+
+    return (
+      <Component
+        schema={this.schema}
+        type="number"
+        value={this.value}
+        onInput={this.handleInput}
+      />
+    )
   }
 }
 </script>

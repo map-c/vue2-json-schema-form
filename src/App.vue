@@ -9,7 +9,16 @@
       />
       <Editor class="editor" title="formData" :value="res" />
     </div>
-    <SchemaFrom :schema="schema" :value="formData" @change="handleChange" />
+    <div class="left-wrapper">
+      <SchemaFrom
+        class="form-wrapper"
+        :schema="schema"
+        :value="formData"
+        @change="handleChange"
+        ref="form"
+      />
+      <el-button @click="handleValidate">校验</el-button>
+    </div>
   </div>
 </template>
 
@@ -44,22 +53,21 @@ export default {
       ),
       schema: {
         type: 'object',
+        required: ['list'],
         properties: {
           list: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                code: {
-                  title: '语言',
-                  type: 'string'
-                },
-                value: {
-                  title: '值',
-                  type: 'string'
-                }
-              }
-            }
+            title: '名称',
+            type: 'string',
+            format: 'email',
+            uiwidget: 'select'
+          },
+          code: {
+            title: '年龄',
+            type: 'number'
+          },
+          one: {
+            title: '设置',
+            type: 'boolean'
           }
         }
       },
@@ -76,6 +84,10 @@ export default {
         ...value
       }
       this.formData = raw
+    },
+    handleValidate() {
+      const res = this.$refs.form.validator()
+      console.log('res is', res)
     }
   }
 }
@@ -87,6 +99,13 @@ export default {
   flex-direction: row;
   .aside {
     width: 50%;
+  }
+  .left-wrapper {
+    width: 50%;
+    flex: 0 1 auto;
+    .form-wrapper {
+      margin: 0 20px;
+    }
   }
 }
 </style>

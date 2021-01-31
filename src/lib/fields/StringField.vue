@@ -1,8 +1,7 @@
 <script>
-import FormItemWrapper from '@/lib/widget/FormItemWrapper'
-
 export default {
   name: 'StringField',
+  inject: ['widget'],
   props: {
     schema: Object,
     errorSchema: Object,
@@ -10,7 +9,7 @@ export default {
   },
   methods: {
     handleInput(event) {
-      let value = event.target.value
+      let value = event
       if (!value) {
         value = ''
       }
@@ -18,10 +17,14 @@ export default {
     }
   },
   render() {
+    const Component = this.widget.StringWidget
+
     return (
-      <FormItemWrapper title={this.schema.title}>
-        <input value={this.value} onInput={this.handleInput} />
-      </FormItemWrapper>
+      <Component
+        schema={this.schema}
+        value={this.value}
+        onChange={v => this.handleInput(v)}
+      />
     )
   }
 }

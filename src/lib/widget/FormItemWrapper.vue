@@ -19,5 +19,16 @@ export default {
 <style lang="scss" scoped>
 .form-item {
   margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 40px;
+  line-height: 40px;
+  .label {
+    width: 120px;
+  }
+  .content {
+    width: calc(100% -120px);
+  }
 }
 </style>

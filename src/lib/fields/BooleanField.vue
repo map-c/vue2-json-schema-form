@@ -1,6 +1,7 @@
 <script>
 export default {
   name: 'BooleanField',
+  inject: ['widget'],
   props: {
     value: Boolean,
     schema: Object,
@@ -8,22 +9,20 @@ export default {
   },
   methods: {
     handleChange(event) {
-      const value = event.target.value
-      console.log('value is', value)
+      const value = event
+      this.$emit('change', value)
     }
   },
   render() {
+    const Component = this.widget.SwitchWidget
     return (
-      <div>
-        <input
-          id="radio"
-          type="radio"
-          value={this.vlaue}
-          label="1"
-          onChange={this.handleChange}
-        />
-        <label for="radio">nan</label>
-      </div>
+      <Component
+        schema={this.schema}
+        value={this.value}
+        error={this.error}
+        options={{}}
+        onChange={v => this.handleChange(v)}
+      />
     )
   }
 }
