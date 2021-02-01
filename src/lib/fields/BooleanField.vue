@@ -5,6 +5,7 @@ export default {
   props: {
     value: Boolean,
     schema: Object,
+    required: Boolean,
     errorSchema: Object
   },
   methods: {
@@ -15,12 +16,13 @@ export default {
   },
   render() {
     const Component = this.widget.SwitchWidget
+    const options = { required: this.required }
     return (
       <Component
         schema={this.schema}
         value={this.value}
         error={this.error}
-        options={{}}
+        options={options}
         onChange={v => this.handleChange(v)}
       />
     )

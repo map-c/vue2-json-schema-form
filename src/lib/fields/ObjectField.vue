@@ -4,7 +4,8 @@ export default {
   props: {
     schema: Object,
     value: Object,
-    errorSchema: Object
+    errorSchema: Object,
+    rootSchema: Object
   },
   inject: ['formItem'],
   methods: {
@@ -19,15 +20,25 @@ export default {
     const properties = this.schema.properties || {}
     const values = this.value || {}
     const errors = this.errorSchema || {}
+    const required = key => {
+      if (this.rootSchema && this.rootSchema.required) {
+        const state = this.rootSchema.required.indexOf(key) > -1
+        return state
+      }
+      return false
+    }
     return (
       <div>
         {Object.keys(properties).map((item, index) => {
+          const state = required(item)
           return (
             <Component
               key={index}
               schema={properties[item]}
               value={values[item] || null}
+              required={state}
               errorSchema={errors[item]}
+              rootSchema={this.rootSchema}
               onChange={v => this.handleChange(item, v)}
             />
           )

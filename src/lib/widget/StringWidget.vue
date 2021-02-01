@@ -1,6 +1,16 @@
 <template>
-  <FormItem :title="title" :error="error">
-    <Input size="small" :value="value" @input="handleInput" />
+  <FormItem
+    :title="title"
+    :required="required"
+    :errors="errorsMap"
+    :readonly="false"
+  >
+    <Input
+      size="small"
+      :value="value"
+      :disabled="disabled"
+      @input="handleInput"
+    />
   </FormItem>
 </template>
 
@@ -17,7 +27,7 @@ export default {
   props: {
     value: String,
     schema: Object,
-    error: String,
+    error: Object,
     options: Object
   },
   computed: {
@@ -32,6 +42,24 @@ export default {
         return this.options.size
       }
       return 'small'
+    },
+    errorsMap() {
+      if (this.error && this.error.__errors) {
+        return this.error.__errors
+      }
+      return []
+    },
+    required() {
+      if (this.options && this.options.required) {
+        return this.options.required
+      }
+      return false
+    },
+    disabled() {
+      if (this.options && 'disabled' in this.options) {
+        return this.options.disabled
+      }
+      return false
     }
   },
   methods: {

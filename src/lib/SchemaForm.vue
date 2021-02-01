@@ -3,6 +3,7 @@
     :schema="schema"
     :value="value"
     :errorSchema="errorSchema"
+    :rootSchema="schema"
     @change="handleFormDataChange"
   />
 </template>
@@ -28,9 +29,11 @@ export default {
     },
     value: {
       type: Object
-    },
-    errorSchema: {
-      type: Object
+    }
+  },
+  data() {
+    return {
+      errorSchema: {}
     }
   },
   methods: {
@@ -44,25 +47,19 @@ export default {
     validator() {
       const valid = validator({
         options: { allErrors: true },
-        formats: [
-          {
-            name: 'test',
-            definition: data => {
-              return data === '123'
-            }
-          }
-        ],
-        keywords: [
-          {
-            keyword: 'uiwidget',
-            type: 'string',
-            schemaType: 'string',
-            code: () => true
-          }
-        ]
+        formats: [],
+        keywords: []
       })
-      const res = valid(this.schema, this.value)
+      const customValidate = formData => {
+        console.log('form data is:', formData)
+      }
+      const res = valid(this.schema, this.value, customValidate)
       console.log('res is', res)
+      if (!res.valid) {
+        this.errorSchema = res.errors
+      } else {
+        this.errorSchema = null
+      }
     }
   }
 }

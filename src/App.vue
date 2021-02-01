@@ -17,7 +17,7 @@
         @change="handleChange"
         ref="form"
       />
-      <el-button @click="handleValidate">校验</el-button>
+      <el-button size="small" @click="handleValidate">校验</el-button>
     </div>
   </div>
 </template>
@@ -53,17 +53,19 @@ export default {
       ),
       schema: {
         type: 'object',
-        required: ['list'],
+        required: ['list', 'code', 'one'],
         properties: {
           list: {
             title: '名称',
             type: 'string',
             format: 'email',
-            uiwidget: 'select'
+            uiwidget: 'select',
+            disabled: true
           },
           code: {
             title: '年龄',
-            type: 'number'
+            type: 'string',
+            format: 'test'
           },
           one: {
             title: '设置',
@@ -86,8 +88,7 @@ export default {
       this.formData = raw
     },
     handleValidate() {
-      const res = this.$refs.form.validator()
-      console.log('res is', res)
+      this.$refs.form.validator()
     }
   }
 }

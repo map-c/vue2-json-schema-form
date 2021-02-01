@@ -10,7 +10,8 @@ export default {
   props: {
     schema: Object,
     value: null,
-    errorSchema: Object
+    errorSchema: Object,
+    rootSchema: Object
   },
   methods: {
     handleMulitChange(v, index) {
@@ -46,17 +47,28 @@ export default {
     const items = this.schema.items
     const isMulitType = Array.isArray(items)
     const isSingleType = typeof items === 'object' && !Array.isArray(items)
+    const required = key => {
+      if (this.rootSchema && this.rootSchema.required) {
+        return this.rootSchema.required.indexOf(key) > -1
+      }
+      return false
+    }
     if (isMulitType) {
       const currentValue = Array.isArray(this.value) ? this.value : []
       return (
         <div>
           {items.map((item, index) => {
             const Component = this.formItem
+            const state = required(item)
+            const options = {}
             return (
               <Component
                 schema={item}
-                value={currentValue[index]}
+                required={state}
+                rootSchema={this.rootSchema}
                 errorSchema={{}}
+                options={options}
+                value={currentValue[index]}
                 onChange={v => this.handleMulitChange(v, index)}
               />
             )
@@ -67,6 +79,7 @@ export default {
       const value = this.value || []
       const Component = this.formItem
       const schema = this.schema.items
+      // const state = required()
       if (value.length) {
         return (
           <div>
@@ -81,6 +94,7 @@ export default {
                     schema={schema}
                     value={item}
                     errorSchema={{}}
+                    rootSchema={this.rootSchema}
                     onChange={v => this.handleSingleChange(v, index)}
                   />
                 </ArrayWrapper>

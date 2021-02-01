@@ -2,9 +2,10 @@
   "name": "vue2-json-schema-form",
   "version": "0.1.0",
   "private": true,
+  "main": "src/lib/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name v2jsf ./src/lib/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

@@ -1,5 +1,5 @@
 <template>
-  <FormItem :title="title" :error="error">
+  <FormItem :title="title" :error="error" :required="required">
     <ElSwitch :value="value" @change="handleChange" />
   </FormItem>
 </template>
@@ -25,6 +25,13 @@ export default {
         return this.schema.title
       }
       return ''
+    },
+    required() {
+      console.log('options is', this.options.required)
+      if (this.options) {
+        return !!this.options.required
+      }
+      return false
     }
   },
   methods: {

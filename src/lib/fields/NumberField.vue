@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     handleInput(event) {
-      let value = event.target.value
+      let value = event
       value = Number(value)
       if (isNaN(value)) {
         value = undefined
@@ -25,7 +25,7 @@ export default {
         schema={this.schema}
         type="number"
         value={this.value}
-        onInput={this.handleInput}
+        onChange={v => this.handleInput(v)}
       />
     )
   }

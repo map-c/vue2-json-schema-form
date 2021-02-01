@@ -11,7 +11,9 @@ export default {
   props: {
     schema: Object,
     value: null,
-    errorSchema: Object
+    required: Boolean,
+    errorSchema: Object,
+    rootSchema: Object
   },
   methods: {
     handleChange(value) {
@@ -45,6 +47,8 @@ export default {
       <Component
         schema={schema}
         value={this.value}
+        required={this.required}
+        rootSchema={schema}
         errorSchema={this.errorSchema}
         onChange={v => this.handleChange(v)}
       />
