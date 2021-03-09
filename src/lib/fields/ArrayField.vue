@@ -38,8 +38,9 @@ export default {
       this.$emit('change', value)
     },
     handleDelete(index) {
+      console.log('delete index is', index)
       const value = Array.isArray(this.value) ? this.value : []
-      value.splice(index, 1)
+      value.splice(index - 1, 1)
       this.$emit('change', value)
     }
   },
@@ -76,35 +77,17 @@ export default {
         </div>
       )
     } else if (isSingleType) {
-      const value = this.value || []
-      const Component = this.formItem
-      const schema = this.schema.items
-      // const state = required()
-      if (value.length) {
-        return (
-          <div>
-            {value.map((item, index) => {
-              return (
-                <ArrayWrapper
-                  key={index}
-                  onAdd={() => this.handleAdd(index)}
-                  onDelete={() => this.handleDelete(index)}
-                >
-                  <Component
-                    schema={schema}
-                    value={item}
-                    errorSchema={{}}
-                    rootSchema={this.rootSchema}
-                    onChange={v => this.handleSingleChange(v, index)}
-                  />
-                </ArrayWrapper>
-              )
-            })}
-          </div>
-        )
-      } else {
-        return <button onclick={() => this.handleAdd(0)}>add</button>
-      }
+      const title = this.schema.title
+      const value = this.value
+      return (
+        <ArrayWrapper
+          title={title}
+          value={value}
+          schema={this.schema}
+          onAdd={index => this.handleAdd(index)}
+          onDelete={index => this.handleDelete(index)}
+        />
+      )
     }
 
     return <div>Array field</div>

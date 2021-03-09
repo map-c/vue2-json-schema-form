@@ -41,9 +41,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.switch-widget {
-  margin: 0;
-}
-</style>

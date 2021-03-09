@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Editor from '@/components/Editor'
-import SchemaFrom from '@/lib/index'
+import Editor from './components/Editor'
+import SchemaFrom from './lib/index'
 
 export default {
   name: 'App',
@@ -53,24 +53,35 @@ export default {
       ),
       schema: {
         type: 'object',
-        required: ['list', 'code', 'one'],
+        required: ['displayName', 'type', 'name'],
         properties: {
-          list: {
-            title: '名称',
+          // displayName: {
+          //   title: '显示名称',
+          //   type: 'array',
+          //   disabled: true,
+          //   items: {
+          //     type: 'object',
+          //     properties: {
+          //       code: {
+          //         title: '语言',
+          //         type: 'string'
+          //       },
+          //       value: {
+          //         title: '显示值',
+          //         type: 'string'
+          //       }
+          //     }
+          //   }
+          // },
+          type: {
+            title: '字段类型',
             type: 'string',
-            format: 'email',
-            uiwidget: 'select',
-            disabled: true
-          },
-          code: {
-            title: '年龄',
-            type: 'string',
-            format: 'test'
-          },
-          one: {
-            title: '设置',
-            type: 'boolean'
+            uiwidget: 'SelectWidget'
           }
+          // name: {
+          //   title: '字段名称',
+          //   type: 'string'
+          // }
         }
       },
       formData: {}

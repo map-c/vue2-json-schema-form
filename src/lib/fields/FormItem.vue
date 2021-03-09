@@ -1,10 +1,10 @@
 <script>
-import StringField from '@/lib/fields/StringField'
-import NumberField from '@/lib/fields/NumberField'
-import BooleanField from '@/lib/fields/BooleanField'
-import ArrayField from '@/lib/fields/ArrayField'
-import ObjectField from '@/lib/fields/ObjectField'
-import TYPE from '@/lib/constants/fieldType'
+import StringField from './StringField'
+import NumberField from './NumberField'
+import BooleanField from './BooleanField'
+import ArrayField from './ArrayField'
+import ObjectField from './ObjectField'
+import TYPE from '../constants/fieldType'
 
 export default {
   name: 'FormItem',
@@ -56,9 +56,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.form-item {
-  margin: 0;
-}
-</style>

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import FormItem from '@/lib/fields/FormItem'
-import Widget from '@/lib/widget/index'
+import FormItem from './fields/FormItem'
+import Widget from './widget/index'
 import validator from './validator/index'
 
 export default {
@@ -64,9 +64,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.schema-form {
-  margin: 0;
-}
-</style>

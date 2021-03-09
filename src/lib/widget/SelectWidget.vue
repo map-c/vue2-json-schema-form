@@ -5,7 +5,7 @@
     :errors="errorsMap"
     :readonly="false"
   >
-    <Select :value="value" @change="handleChange">
+    <Select :value="value" @change="handleChange" size="mini">
       <Option
         v-for="item in items"
         :key="item.value"
@@ -24,9 +24,9 @@ export default {
   name: 'SelectWidget',
   props: {
     schema: Object,
-    value: Boolean,
+    value: String,
     options: Object,
-    error: String
+    error: Array
   },
   components: {
     FormItem,
@@ -71,14 +71,10 @@ export default {
       return false
     }
   },
-  handleChange(event) {
-    this.$emit('change', event)
+  methods: {
+    handleChange(event) {
+      this.$emit('change', event)
+    }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.select-widget {
-  margin: 0;
-}
-</style>

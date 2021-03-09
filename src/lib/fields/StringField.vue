@@ -1,4 +1,6 @@
 <script>
+import { getWidget } from '../utils/index'
+
 export default {
   name: 'StringField',
   inject: ['widget'],
@@ -11,7 +13,6 @@ export default {
   },
   computed: {
     disabled() {
-      console.log(this.schema.disabled)
       return !!this.schema.disabled
     }
   },
@@ -25,11 +26,19 @@ export default {
     }
   },
   render() {
-    const Component = this.widget.StringWidget
-    console.log('this.schema is', this.schema)
+    let Component = null
+    Component = getWidget(this.schema)
+    if (!Component) {
+      Component = this.widget.StringWidget
+    }
 
     const options = { required: this.required, disabled: this.disabled }
-    console.log('options is', options)
+    const enumMap = this.schema.enum ? this.schema.enum : []
+    if (enumMap.length) {
+      options.items = enumMap.map(item => ({ label: item, value: item }))
+      Component = this.widget.SelectWidget
+      console.log('Component is', Component)
+    }
     return (
       <Component
         schema={this.schema}

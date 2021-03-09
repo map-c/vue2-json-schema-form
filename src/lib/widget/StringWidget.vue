@@ -69,9 +69,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.string-widget {
-  margin: 0;
-}
-</style>
