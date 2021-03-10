@@ -27,7 +27,6 @@ export default {
       return ''
     },
     required() {
-      console.log('options is', this.options.required)
       if (this.options) {
         return !!this.options.required
       }

@@ -21,5 +21,8 @@ export default {
 }
 </script>
 
-//
-<style scoped></style>
+<style lang="stylus" scoped>
+.form-item {
+  margin: 10px 0;
+}
+</style>

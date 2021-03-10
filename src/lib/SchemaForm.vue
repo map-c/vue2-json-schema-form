@@ -54,7 +54,6 @@ export default {
         console.log('form data is:', formData)
       }
       const res = valid(this.schema, this.value, customValidate)
-      console.log('res is', res)
       if (!res.valid) {
         this.errorSchema = res.errors
       } else {

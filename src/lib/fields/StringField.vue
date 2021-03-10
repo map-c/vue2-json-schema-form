@@ -37,7 +37,6 @@ export default {
     if (enumMap.length) {
       options.items = enumMap.map(item => ({ label: item, value: item }))
       Component = this.widget.SelectWidget
-      console.log('Component is', Component)
     }
     return (
       <Component

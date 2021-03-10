@@ -12,15 +12,27 @@ export default {
   },
   methods: {
     handleAdd() {
-      this.$emit('add', this.value.length)
+      if (this.value.length) {
+        this.$emit('add', this.value.length)
+      } else {
+        this.$emit('add')
+      }
     },
     handleDelete() {
-      this.$emit('delete', this.value.length)
+      this.$emit('delete', this.value.length - 1)
     },
     handleChange(val, index) {
-      const values = this.value.map(item => ({ ...item }))
-      values[index] = val
-      this.$emit('change', values)
+      let value = null
+      const oldValue = this.value[index]
+      if (typeof oldValue !== 'object') {
+        value = val
+      } else {
+        value = {
+          ...oldValue,
+          ...val
+        }
+      }
+      this.$emit('change', { value, index })
     }
   },
   render() {
@@ -94,7 +106,10 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
+  >>> .form-item {
+    margin: 0;
+  }
 }
 </style>

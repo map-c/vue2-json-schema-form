@@ -19,29 +19,35 @@ export default {
       raw[index] = v
       this.$emit('change', raw)
     },
-    handleSingleChange(val, index) {
-      const raw = this.value
-      if (typeof val === 'object' && val !== null) {
-        const tmp = raw[index]
-        raw[index] = {
-          ...tmp,
-          ...val
-        }
-      } else {
+    handleSingleChange(data) {
+      const { value: val, index } = data
+      let raw = null
+      if (typeof val !== 'object') {
+        raw = this.value.map(item => item)
         raw[index] = val
+      } else {
+        raw = this.value.map(item => ({ ...item }))
+        if (typeof val === 'object' && val !== null) {
+          const tmp = raw[index]
+          raw[index] = {
+            ...tmp,
+            ...val
+          }
+        }
       }
       this.$emit('change', raw)
     },
     handleAdd(index) {
       const value = Array.isArray(this.value) ? this.value : []
-      value.splice(index + 1, 0, undefined)
+      value.splice(index, 0, undefined)
       this.$emit('change', value)
     },
     handleDelete(index) {
-      console.log('delete index is', index)
-      const value = Array.isArray(this.value) ? this.value : []
-      value.splice(index - 1, 1)
-      this.$emit('change', value)
+      if (index) {
+        const value = Array.isArray(this.value) ? this.value : []
+        value.splice(index, 1)
+        this.$emit('change', value)
+      }
     }
   },
   render() {
@@ -86,6 +92,7 @@ export default {
           schema={this.schema}
           onAdd={index => this.handleAdd(index)}
           onDelete={index => this.handleDelete(index)}
+          onChange={value => this.handleSingleChange(value)}
         />
       )
     }
